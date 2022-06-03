@@ -12,17 +12,17 @@ namespace Servers.db
     using System;
     using System.Collections.Generic;
     
-    public partial class Servers
+    public partial class Seerver
     {
-        public Servers()
+        public Seerver()
         {
-            this.User = new HashSet<User>();
+            this.Userr = new HashSet<Userr>();
         }
     
         public int Id { get; set; }
         public string Name_server { get; set; }
-        public string Addres { get; set; }
+        public string Adres { get; set; }
     
-        public virtual ICollection<User> User { get; set; }
+        public virtual ICollection<Userr> Userr { get; set; }
     }
 }

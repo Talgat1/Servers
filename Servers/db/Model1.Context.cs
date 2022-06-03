@@ -16,10 +16,10 @@ namespace Servers.db
     using System.Data.Objects.DataClasses;
     using System.Linq;
     
-    public partial class Server_prodEntities : DbContext
+    public partial class Server_prodEntities1 : DbContext
     {
-        public Server_prodEntities()
-            : base("name=Server_prodEntities")
+        public Server_prodEntities1()
+            : base("name=Server_prodEntities1")
         {
         }
     
@@ -28,9 +28,9 @@ namespace Servers.db
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<Servers> Servers { get; set; }
+        public DbSet<Seerver> Seerver { get; set; }
         public DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public DbSet<User> User { get; set; }
+        public DbSet<Userr> Userr { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

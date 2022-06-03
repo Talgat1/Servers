@@ -14,7 +14,7 @@
         <TextBlock Height="16" Width="370" FontSize="12px" FontStyle="Normal" FontFamily="Segoe UI" LineHeight="16px" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,150,0,0" Foreground="#909192" >Пароль</TextBlock>
         <TextBox x:Name="PasswordTB" TextWrapping="Wrap" FontSize="12" Padding="10,10,0,0"  Height="36" Width="370" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,165,0,0" Background="#E9EAF0"></TextBox>
         <TextBlock Height="16" Width="370" FontSize="12px" FontStyle="Normal" FontFamily="Segoe UI" LineHeight="16px" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,205,0,0" Foreground="#909192" >Сервер</TextBlock>
-        <TextBox x:Name="ServerTB" TextWrapping="Wrap" FontSize="12" Padding="10,10,0,0"  Height="36px" Width="370" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,220,0,0" Background="#E9EAF0"></TextBox>
+        <ComboBox x:Name="ServerCB" SelectionChanged="ServerCB_SelectionChanged" ItemsSource="{Binding}" SelectedValuePath="Id" DisplayMemberPath="Name_server" FontSize="12" Padding="10,10,0,0"  Height="36px" Width="370" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,220,0,0" Background="#E9EAF0"></ComboBox>
         <Button x:Name="Close" HorizontalAlignment="Right" VerticalAlignment="Top" Width="20" Height="20" Margin="0,20,20,0" Click="Close_Click" >
             <Button.Background>
                 <ImageBrush ImageSource="images/black_krest.png"/>

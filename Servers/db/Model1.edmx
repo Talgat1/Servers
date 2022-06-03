@@ -5,13 +5,13 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="Хранилище Server_prodModel" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Servers">
+        <EntityType Name="Seerver">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name_server" Type="nvarchar" MaxLength="50" />
-          <Property Name="Addres" Type="nvarchar" MaxLength="50" />
+          <Property Name="Adres" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -23,7 +23,7 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <EntityType Name="User">
+        <EntityType Name="Userr">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -32,14 +32,14 @@
           <Property Name="Password" Type="nvarchar" MaxLength="50" />
           <Property Name="Id_server" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK_User_Servers">
-          <End Role="Servers" Type="Self.Servers" Multiplicity="1" />
-          <End Role="User" Type="Self.User" Multiplicity="*" />
+        <Association Name="FK_Userr_Seerver">
+          <End Role="Seerver" Type="Self.Seerver" Multiplicity="1" />
+          <End Role="Userr" Type="Self.Userr" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Servers">
+            <Principal Role="Seerver">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="User">
+            <Dependent Role="Userr">
               <PropertyRef Name="Id_server" />
             </Dependent>
           </ReferentialConstraint>
@@ -76,26 +76,26 @@
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="Хранилище Server_prodModelContainer">
-          <EntitySet Name="Servers" EntityType="Self.Servers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Seerver" EntityType="Self.Seerver" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_User_Servers" Association="Self.FK_User_Servers">
-            <End Role="Servers" EntitySet="Servers" />
-            <End Role="User" EntitySet="User" />
+          <EntitySet Name="Userr" EntityType="Self.Userr" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Userr_Seerver" Association="Self.FK_Userr_Seerver">
+            <End Role="Seerver" EntitySet="Seerver" />
+            <End Role="Userr" EntitySet="Userr" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Server_prodModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Servers">
+        <EntityType Name="Seerver">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name_server" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Addres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="User" Relationship="Self.FK_User_Servers" FromRole="Servers" ToRole="User" />
+          <Property Name="Adres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Userr" Relationship="Self.FK_Userr_Seerver" FromRole="Seerver" ToRole="Userr" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -107,7 +107,7 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="User">
+        <EntityType Name="Userr">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -115,27 +115,27 @@
           <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Id_server" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Servers" Relationship="Self.FK_User_Servers" FromRole="User" ToRole="Servers" />
+          <NavigationProperty Name="Seerver" Relationship="Self.FK_Userr_Seerver" FromRole="Userr" ToRole="Seerver" />
         </EntityType>
-        <Association Name="FK_User_Servers">
-          <End Role="Servers" Type="Self.Servers" Multiplicity="1" />
-          <End Role="User" Type="Self.User" Multiplicity="*" />
+        <Association Name="FK_Userr_Seerver">
+          <End Role="Seerver" Type="Self.Seerver" Multiplicity="1" />
+          <End Role="Userr" Type="Self.Userr" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Servers">
+            <Principal Role="Seerver">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="User">
+            <Dependent Role="Userr">
               <PropertyRef Name="Id_server" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Server_prodEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Servers" EntityType="Self.Servers" />
+        <EntityContainer Name="Server_prodEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Seerver" EntityType="Self.Seerver" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="User" EntityType="Self.User" />
-          <AssociationSet Name="FK_User_Servers" Association="Self.FK_User_Servers">
-            <End Role="Servers" EntitySet="Servers" />
-            <End Role="User" EntitySet="User" />
+          <EntitySet Name="Userr" EntityType="Self.Userr" />
+          <AssociationSet Name="FK_Userr_Seerver" Association="Self.FK_Userr_Seerver">
+            <End Role="Seerver" EntitySet="Seerver" />
+            <End Role="Userr" EntitySet="Userr" />
           </AssociationSet>
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -184,13 +184,13 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище Server_prodModelContainer" CdmEntityContainer="Server_prodEntities">
-          <EntitySetMapping Name="Servers">
-            <EntityTypeMapping TypeName="Server_prodModel.Servers">
-              <MappingFragment StoreEntitySet="Servers">
+        <EntityContainerMapping StorageEntityContainer="Хранилище Server_prodModelContainer" CdmEntityContainer="Server_prodEntities1">
+          <EntitySetMapping Name="Seerver">
+            <EntityTypeMapping TypeName="Server_prodModel.Seerver">
+              <MappingFragment StoreEntitySet="Seerver">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name_server" ColumnName="Name_server" />
-                <ScalarProperty Name="Addres" ColumnName="Addres" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -205,9 +205,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="User">
-            <EntityTypeMapping TypeName="Server_prodModel.User">
-              <MappingFragment StoreEntitySet="User">
+          <EntitySetMapping Name="Userr">
+            <EntityTypeMapping TypeName="Server_prodModel.Userr">
+              <MappingFragment StoreEntitySet="Userr">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="Password" ColumnName="Password" />

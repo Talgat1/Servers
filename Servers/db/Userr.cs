@@ -12,13 +12,13 @@ namespace Servers.db
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Userr
     {
         public int Id { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
         public int Id_server { get; set; }
     
-        public virtual Servers Servers { get; set; }
+        public virtual Seerver Seerver { get; set; }
     }
 }

@@ -14,6 +14,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Servers.db;
 
+using System.Data.SqlClient;
+using System.Data;
+
 namespace Servers
 {
     /// <summary>
@@ -21,13 +24,30 @@ namespace Servers
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static Server_prodEntities db = new Server_prodEntities();
+        public static Server_prodEntities1 db = new Server_prodEntities1();
 
-        public static User authUser;
+        public static Userr authUser;
         public MainWindow()
         {
             InitializeComponent();
+            BindServer();
         }
+
+        public List<Seerver> Ser { get; set; }
+        
+        private void BindServer()
+        {
+            var item = db.Seerver.ToList();
+            Ser = item;
+            DataContext = Ser;
+        }
+
+        private void ServerCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var item = ServerCB.SelectedItem as Seerver;
+        }
+
+
         private void Close_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
@@ -35,24 +55,31 @@ namespace Servers
 
         private void Button_Click_Login(object sender, RoutedEventArgs e)
         {
-            //seetovar st = new seetovar();
-            //mainadmin ac = new mainadmin();
+            int b = 0;
             if(LoginTB.Text == "" || PasswordTB.Text == "")
             {
                 MessageBox.Show($"Ошибка, заполните все поля.");
             }
             else
             {
-                foreach (var user in db.User)
+                foreach (var user in db.Userr)
                 {
                     if (user.Login == LoginTB.Text.Trim() && user.Password == PasswordTB.Text.Trim())
                     {
+                        b++;
                         MessageBox.Show($"Привет Пользователь {user.Login}");
-                        authUser = user;
-                        ServerWindow sw = new ServerWindow();
-                        this.Close();
-                        sw.Show();
-                    }
+                        authUser = user;                        
+                    }                    
+                }
+                if (b == 0)
+                {
+                    MessageBox.Show($"Неверный логин или пароль. Попробуйте еще раз.");
+                }
+                else
+                {
+                    ServerWindow sw = new ServerWindow();
+                    this.Close();
+                    sw.Show();
                 }
             }            
         }
