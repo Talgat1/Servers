@@ -16,10 +16,10 @@ namespace Servers.db
     using System.Data.Objects.DataClasses;
     using System.Linq;
     
-    public partial class Server_prodEntities1 : DbContext
+    public partial class Server_prodEntities : DbContext
     {
-        public Server_prodEntities1()
-            : base("name=Server_prodEntities1")
+        public Server_prodEntities()
+            : base("name=Server_prodEntities")
         {
         }
     

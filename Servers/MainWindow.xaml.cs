@@ -24,17 +24,16 @@ namespace Servers
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static Server_prodEntities1 db = new Server_prodEntities1();
+        public static Server_prodEntities db = new Server_prodEntities();
+        bool showpas = true;
+        public List<Seerver> Ser { get; set; }
 
         public static Userr authUser;
         public MainWindow()
         {
             InitializeComponent();
             BindServer();
-        }
-
-        public List<Seerver> Ser { get; set; }
-        
+        }               
         private void BindServer()
         {
             var item = db.Seerver.ToList();
@@ -45,18 +44,25 @@ namespace Servers
         private void ServerCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var item = ServerCB.SelectedItem as Seerver;
+            foreach (var ser in db.Seerver)
+            {
+                if (ser.Name_server == item.Name_server)
+                {
+                    DoppTB.Text = ser.Adres;
+                }
+            }
         }
 
 
         private void Close_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            Close();
         }
 
         private void Button_Click_Login(object sender, RoutedEventArgs e)
         {
             int b = 0;
-            if(LoginTB.Text == "" || PasswordTB.Text == "")
+            if(String.IsNullOrWhiteSpace(LoginTB.Text) || String.IsNullOrWhiteSpace(PasswordTB.Password))
             {
                 MessageBox.Show($"Ошибка, заполните все поля.");
             }
@@ -64,7 +70,7 @@ namespace Servers
             {
                 foreach (var user in db.Userr)
                 {
-                    if (user.Login == LoginTB.Text.Trim() && user.Password == PasswordTB.Text.Trim())
+                    if (user.Login == LoginTB.Text.Trim() && user.Password == PasswordTB.Password.Trim())
                     {
                         b++;
                         MessageBox.Show($"Привет Пользователь {user.Login}");
@@ -82,6 +88,28 @@ namespace Servers
                     sw.Show();
                 }
             }            
+        }
+        private void ShowPassword_Click(object sender, RoutedEventArgs e)
+        {
+            if(showpas == true)
+            {
+                passwordTxtBox.Text = PasswordTB.Password;
+                PasswordTB.Visibility = Visibility.Collapsed;
+                passwordTxtBox.Visibility = Visibility.Visible;
+                showpas = false;
+            }
+            else
+            {
+                PasswordTB.Password = passwordTxtBox.Text;
+                passwordTxtBox.Visibility = Visibility.Collapsed;
+                PasswordTB.Visibility = Visibility.Visible;
+                showpas = true;
+            }           
+        }        
+        
+        private void Button_Click_AddServer(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

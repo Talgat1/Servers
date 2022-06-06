@@ -38,6 +38,24 @@
     <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="SharpVectorBindings, Version=0.3.1.41013, Culture=neutral, PublicKeyToken=a8855419d33ac940, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpVectors0.3.1.41013.0.3.1.41013\lib\net20\SharpVectorBindings.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpVectorCss, Version=0.3.1.41013, Culture=neutral, PublicKeyToken=a8855419d33ac940, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpVectors0.3.1.41013.0.3.1.41013\lib\net20\SharpVectorCss.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpVectorDom, Version=0.3.1.41013, Culture=neutral, PublicKeyToken=a8855419d33ac940, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpVectors0.3.1.41013.0.3.1.41013\lib\net20\SharpVectorDom.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpVectorObjectModel, Version=0.3.1.41014, Culture=neutral, PublicKeyToken=a8855419d33ac940, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpVectors0.3.1.41013.0.3.1.41013\lib\net20\SharpVectorObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpVectorRenderingEngine, Version=0.3.1.41014, Culture=neutral, PublicKeyToken=a8855419d33ac940, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpVectors0.3.1.41013.0.3.1.41013\lib\net20\SharpVectorRenderingEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpVectorUtil, Version=0.3.1.41013, Culture=neutral, PublicKeyToken=a8855419d33ac940, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpVectors0.3.1.41013.0.3.1.41013\lib\net20\SharpVectorUtil.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -147,9 +165,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <Resource Include="images\black_krest.png" />
-  </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>

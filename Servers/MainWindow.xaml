@@ -5,21 +5,51 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Servers"
         mc:Ignorable="d" WindowStyle="None"
-        Title="MainWindow" Height="432" Width="427">
+        Title="MainWindow" WindowStartupLocation="CenterScreen"  Height="430" Width="440">
     <Grid>
-        <TextBlock Height="28" Width="159" FontSize="20"  FontStyle="Normal" FontFamily="Segoe UI" LineHeight="28px" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,20,0,0">Вход в систему</TextBlock>
-        <TextBlock Height="20" Width="357" FontSize="14"  FontStyle="Normal" FontFamily="Segoe UI" LineHeight="20px" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,67,0,0">Введите логин и пароль, выберите чтобы продолжить</TextBlock>
-        <TextBlock Height="16" Width="370" FontSize="12" FontStyle="Normal" FontFamily="Segoe UI" LineHeight="16px" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,95,0,0" Foreground="#909192" >Логин</TextBlock>
-        <TextBox x:Name="LoginTB" TextWrapping="Wrap" FontSize="12" Padding="10,10,0,0" Height="36" Width="370" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,110,0,0" Background="#E9EAF0"></TextBox>
-        <TextBlock Height="16" Width="370" FontSize="12px" FontStyle="Normal" FontFamily="Segoe UI" LineHeight="16px" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,150,0,0" Foreground="#909192" >Пароль</TextBlock>
-        <TextBox x:Name="PasswordTB" TextWrapping="Wrap" FontSize="12" Padding="10,10,0,0"  Height="36" Width="370" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,165,0,0" Background="#E9EAF0"></TextBox>
-        <TextBlock Height="16" Width="370" FontSize="12px" FontStyle="Normal" FontFamily="Segoe UI" LineHeight="16px" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,205,0,0" Foreground="#909192" >Сервер</TextBlock>
-        <ComboBox x:Name="ServerCB" SelectionChanged="ServerCB_SelectionChanged" ItemsSource="{Binding}" SelectedValuePath="Id" DisplayMemberPath="Name_server" FontSize="12" Padding="10,10,0,0"  Height="36px" Width="370" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,220,0,0" Background="#E9EAF0"></ComboBox>
-        <Button x:Name="Close" HorizontalAlignment="Right" VerticalAlignment="Top" Width="20" Height="20" Margin="0,20,20,0" Click="Close_Click" >
-            <Button.Background>
-                <ImageBrush ImageSource="images/black_krest.png"/>
-            </Button.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="16"></RowDefinition>
+            <RowDefinition Height="36"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="36"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="36"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="36"></RowDefinition>
+            <RowDefinition Height="45"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"></ColumnDefinition>
+            <ColumnDefinition Width="390"></ColumnDefinition>
+            <ColumnDefinition Width="30"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Column="1" Grid.Row="1"  FontSize="20" LineHeight="28px" HorizontalAlignment="Left" VerticalAlignment="Center">Вход в систему</TextBlock>
+        <Button Grid.Column="1" Grid.Row="1" x:Name="Close" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Close_Click" >
+            <Path Fill="#000000" Data="M12.0007 1.20857L10.7921 0L6.00067 4.79143L1.20924 0L0.000671387 1.20857L4.7921 6L0.000671387 10.7914L1.20924 12L6.00067 7.20857L10.7921 12L12.0007 10.7914L7.20924 6L12.0007 1.20857Z"/>
         </Button>
-        <Button Content="Войти" FontSize="16" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="288" Background="#4EA9FF" Height="36"  Click="Button_Click_Login" Margin="20,360,0,0"/>
+        <TextBlock Grid.Column="1" Grid.Row="2" Height="20" FontSize="14" LineHeight="20px"  VerticalAlignment="Top">Введите логин и пароль, выберите чтобы продолжить</TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="3"  FontSize="12" LineHeight="16px" Foreground="#909192">Логин</TextBlock>
+        <TextBox Grid.Column="1" Grid.Row="4" x:Name="LoginTB" FontSize="12" Padding="10,10,0,0" Height="36" Width="390" Background="#E9EAF0"></TextBox>
+        <TextBlock  Grid.Column="1" Grid.Row="5" FontSize="12px" VerticalAlignment="Bottom" LineHeight="16px" Foreground="#909192">Пароль</TextBlock>
+        <StackPanel Grid.Column="1" Grid.Row="6" Orientation="Horizontal" Width="390" Background="#E9EAF0">
+            <Grid Width="355">
+                <PasswordBox Name="PasswordTB" FontSize="12" Padding="10,10,0,0"  Background="#E9EAF0"  />
+                <TextBox Name="passwordTxtBox" Visibility="Collapsed" FontSize="12" Padding="10,10,0,0"  Background="#E9EAF0"/>
+            </Grid>
+            <Button  Background="#E9EAF0" Width="35" Height="36"  Name="showPassword" Click="ShowPassword_Click">
+                <Path   Fill="#000000"  Data="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"></Path>
+            </Button>
+        </StackPanel>
+        <TextBlock Grid.Column="1" Grid.Row="7" FontSize="12px" LineHeight="16px" VerticalAlignment="Bottom" Foreground="#909192" >Сервер</TextBlock>
+        <ComboBox Grid.Column="1" Grid.Row="8" x:Name="ServerCB" SelectionChanged="ServerCB_SelectionChanged" ItemsSource="{Binding}"  SelectedValuePath="Id" DisplayMemberPath="Name_server" FontSize="12" Padding="10,10,0,0" Width="390" Background="#E9EAF0"/>
+        <Button Grid.Column="1" Grid.Row="9" Content="Добавить сервер" FontSize="12" Width="100" HorizontalAlignment="Left" Height="20" Click="Button_Click_AddServer"/>
+        <TextBlock Grid.Column="1" Grid.Row="10"  FontSize="12px" LineHeight="16px" VerticalAlignment="Bottom"  Foreground="#909192">Дополнительно</TextBlock>
+        <TextBox Grid.Column="1" Grid.Row="11" x:Name="DoppTB" FontSize="12" Padding="10,10,0,0" Width="390"></TextBox>
+        <Button Grid.Column="1" Grid.Row="12" Content="Войти" FontSize="16" HorizontalAlignment="Left"  VerticalAlignment="Bottom" Width="290" Background="#4EA9FF" Click="Button_Click_Login"/>
     </Grid>
 </Window>
