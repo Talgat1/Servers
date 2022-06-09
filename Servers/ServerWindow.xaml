@@ -3,10 +3,59 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Servers"
-        mc:Ignorable="d"
-        Title="ServerWindow" Height="450" Width="800">
+        xmlns:local="clr-namespace:Servers"        
+        mc:Ignorable="d" WindowStyle="None" WindowStartupLocation="CenterScreen"
+        Title="ServerWindow" Height="430" Width="440">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="35"></RowDefinition>
+            <RowDefinition Height="190"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"></ColumnDefinition>
+            <ColumnDefinition Width="390"></ColumnDefinition>
+            <ColumnDefinition Width="20"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Column="1" Grid.Row="1" FontSize="20" LineHeight="28px" HorizontalAlignment="Left" VerticalAlignment="Center">Доступные сервера</TextBlock>
+        <Button Grid.Column="1" Grid.Row="1" x:Name="Close" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Close_Click" >
+            <Path Fill="#000000" Data="M12.0007 1.20857L10.7921 0L6.00067 4.79143L1.20924 0L0.000671387 1.20857L4.7921 6L0.000671387 10.7914L1.20924 12L6.00067 7.20857L10.7921 12L12.0007 10.7914L7.20924 6L12.0007 1.20857Z"/>
+        </Button>
+        <TextBlock Grid.Column="1" Grid.Row="2" Height="20" FontSize="14" LineHeight="20px" Foreground="#909192" HorizontalAlignment="Left"  VerticalAlignment="Bottom">Название</TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="2" Height="20" FontSize="14" LineHeight="20px" Foreground="#909192" HorizontalAlignment="Right" Margin="0,0,170,0"  VerticalAlignment="Bottom">Адрес сервера</TextBlock>
+        <ListBox Grid.Row="3" Grid.Column="1" x:Name="phonesList">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="15"></RowDefinition>
+                                <RowDefinition Height="20"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="140"></ColumnDefinition>
+                                <ColumnDefinition Width="110"></ColumnDefinition>
+                                <ColumnDefinition Width="110"></ColumnDefinition>
+                                <ColumnDefinition Width="20"></ColumnDefinition>
+                                
+                            </Grid.ColumnDefinitions>
+                            
+                            <TextBox Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" IsReadOnly="True" Height="15" FontSize="12" Text="{Binding Path=Name_server}" />
+                            <TextBox Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" IsReadOnly="True" FontSize="12" Text="{Binding Path=Adres}"  />
+                            <Button Grid.Row="0" Grid.Column="2" x:Name="EditBut" Height="15" HorizontalAlignment="Right" Width="15">
+                                <Path Fill="#000000" Data="M21.05,286.875l76.5,76.5l-1.9,3.8l-95.6,19.2l19.1-95.6L21.05,286.875z M34.65,272.775l77.1,77.1l216.4-216.399
+		l-77.101-77.1L34.65,272.775z M374.85,34.375l-23-22.9c-15.3-15.3-38.199-15.3-53.5,0l-32.5,32.5l76.5,76.5l32.5-32.5
+		C390.15,72.675,390.15,47.775,374.85,34.375z"></Path>
+                            </Button>
+                            <Button Grid.Row="0" Grid.Column="3" x:Name="DeleteBut" Height="15" HorizontalAlignment="Right" Width="15"></Button>
+                        </Grid>
+                        
+                        
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Window>

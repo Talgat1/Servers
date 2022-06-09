@@ -27,8 +27,8 @@ namespace Servers
         public static Server_prodEntities db = new Server_prodEntities();
         bool showpas = true;
         public List<Seerver> Ser { get; set; }
-
         public static Userr authUser;
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -58,6 +58,7 @@ namespace Servers
         {
             Close();
         }
+        //<TextBox Grid.Column="1" Grid.Row="11" x:Name="DoppTB" FontSize="12" Padding="10,10,0,0" Width="390"></TextBox>
 
         private void Button_Click_Login(object sender, RoutedEventArgs e)
         {
@@ -107,9 +108,20 @@ namespace Servers
             }           
         }        
         
-        private void Button_Click_AddServer(object sender, RoutedEventArgs e)
+        private void Button_Click_Edit(object sender, RoutedEventArgs e)
         {
-
+            if (String.IsNullOrWhiteSpace(DoppTB.Text))
+            {
+                MessageBox.Show($"Ошибка, выберите сервер.");
+            }
+            else
+            {
+                ServerWindow sw = new ServerWindow();
+                this.Close();
+                sw.Show();
+            }
         }
+        
+
     }
 }

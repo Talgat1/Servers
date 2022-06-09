@@ -19,8 +19,8 @@
             <RowDefinition Height="36"></RowDefinition>
             <RowDefinition Height="20"></RowDefinition>
             <RowDefinition Height="25"></RowDefinition>
-            <RowDefinition Height="36"></RowDefinition>
             <RowDefinition Height="45"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="30"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -28,13 +28,16 @@
             <ColumnDefinition Width="390"></ColumnDefinition>
             <ColumnDefinition Width="30"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Column="1" Grid.Row="1"  FontSize="20" LineHeight="28px" HorizontalAlignment="Left" VerticalAlignment="Center">Вход в систему</TextBlock>
+        
+        <TextBlock Grid.Column="1" Grid.Row="1" FontSize="20" LineHeight="28px" HorizontalAlignment="Left" VerticalAlignment="Center">Вход в систему</TextBlock>
         <Button Grid.Column="1" Grid.Row="1" x:Name="Close" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Close_Click" >
             <Path Fill="#000000" Data="M12.0007 1.20857L10.7921 0L6.00067 4.79143L1.20924 0L0.000671387 1.20857L4.7921 6L0.000671387 10.7914L1.20924 12L6.00067 7.20857L10.7921 12L12.0007 10.7914L7.20924 6L12.0007 1.20857Z"/>
         </Button>
         <TextBlock Grid.Column="1" Grid.Row="2" Height="20" FontSize="14" LineHeight="20px"  VerticalAlignment="Top">Введите логин и пароль, выберите чтобы продолжить</TextBlock>
-        <TextBlock Grid.Column="1" Grid.Row="3"  FontSize="12" LineHeight="16px" Foreground="#909192">Логин</TextBlock>
-        <TextBox Grid.Column="1" Grid.Row="4" x:Name="LoginTB" FontSize="12" Padding="10,10,0,0" Height="36" Width="390" Background="#E9EAF0"></TextBox>
+        <TextBlock Grid.Column="1" Grid.Row="3" FontSize="12" LineHeight="16px" Foreground="#909192">Логин</TextBlock>
+        <TextBox Grid.Column="1" Grid.Row="4" x:Name="LoginTB" FontSize="12" Padding="10,10,0,0" Height="36"  Width="390" Background="#E9EAF0" >
+            
+        </TextBox>
         <TextBlock  Grid.Column="1" Grid.Row="5" FontSize="12px" VerticalAlignment="Bottom" LineHeight="16px" Foreground="#909192">Пароль</TextBlock>
         <StackPanel Grid.Column="1" Grid.Row="6" Orientation="Horizontal" Width="390" Background="#E9EAF0">
             <Grid Width="355">
@@ -47,9 +50,33 @@
         </StackPanel>
         <TextBlock Grid.Column="1" Grid.Row="7" FontSize="12px" LineHeight="16px" VerticalAlignment="Bottom" Foreground="#909192" >Сервер</TextBlock>
         <ComboBox Grid.Column="1" Grid.Row="8" x:Name="ServerCB" SelectionChanged="ServerCB_SelectionChanged" ItemsSource="{Binding}"  SelectedValuePath="Id" DisplayMemberPath="Name_server" FontSize="12" Padding="10,10,0,0" Width="390" Background="#E9EAF0"/>
-        <Button Grid.Column="1" Grid.Row="9" Content="Добавить сервер" FontSize="12" Width="100" HorizontalAlignment="Left" Height="20" Click="Button_Click_AddServer"/>
-        <TextBlock Grid.Column="1" Grid.Row="10"  FontSize="12px" LineHeight="16px" VerticalAlignment="Bottom"  Foreground="#909192">Дополнительно</TextBlock>
-        <TextBox Grid.Column="1" Grid.Row="11" x:Name="DoppTB" FontSize="12" Padding="10,10,0,0" Width="390"></TextBox>
+        <Button Grid.Column="1" Grid.Row="9" Content="Добавить сервер" FontSize="12" Width="100" HorizontalAlignment="Left" Height="20"/>
+        <ToggleButton Grid.Column="1" Grid.Row="10" Name="DopButton" Content="Дополнительно" Background="White" HorizontalAlignment="Left" FontSize="12px"  VerticalAlignment="Bottom"></ToggleButton>
+        <Grid Grid.Column="1" Grid.Row="11" Name="CollapsedGrid">
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Setter Property="Visibility" Value="Hidden"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=DopButton, Path=IsChecked}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="90"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="25"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0" FontSize="12" VerticalAlignment="Bottom"  Foreground="#909192">Адрес сервера</TextBlock>
+                <TextBox Grid.Row="1" Grid.Column="0" x:Name="DoppTB" Background="White" FontSize="12" BorderBrush="{x:Null}" IsReadOnly="True" Padding="0,5,0,0" Width="300"/>
+                <Button Grid.Row="1" Grid.Column="1" Content="Редактировать" Background="White" Foreground="#4EA9FF" BorderBrush="{x:Null}" x:Name="EditBut" Width="90" Height="25" Click="Button_Click_Edit" ></Button>
+            </Grid>
+        </Grid>
         <Button Grid.Column="1" Grid.Row="12" Content="Войти" FontSize="16" HorizontalAlignment="Left"  VerticalAlignment="Bottom" Width="290" Background="#4EA9FF" Click="Button_Click_Login"/>
     </Grid>
 </Window>

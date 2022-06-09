@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,10 +19,17 @@ namespace Servers
     /// Логика взаимодействия для ServerWindow.xaml
     /// </summary>
     public partial class ServerWindow : Window
-    {
+    {      
         public ServerWindow()
         {
             InitializeComponent();
+            phonesList.ItemsSource = MainWindow.db.Seerver.ToList();
         }
+
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
     }
 }
