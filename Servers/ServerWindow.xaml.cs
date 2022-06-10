@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Servers.db;
 
 namespace Servers
 {
@@ -23,12 +23,17 @@ namespace Servers
         public ServerWindow()
         {
             InitializeComponent();
-            phonesList.ItemsSource = MainWindow.db.Seerver.ToList();
+            ServerList.ItemsSource = MainWindow.db.Seerver.ToList();
         }
 
         private void Close_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void Edit_Button_CLick(object sender, RoutedEventArgs e)
+        {
+            
         }
 
     }

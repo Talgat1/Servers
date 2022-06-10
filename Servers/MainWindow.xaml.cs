@@ -36,6 +36,7 @@ namespace Servers
         }               
         private void BindServer()
         {
+            
             var item = db.Seerver.ToList();
             Ser = item;
             DataContext = Ser;
@@ -52,14 +53,10 @@ namespace Servers
                 }
             }
         }
-
-
         private void Close_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
-        //<TextBox Grid.Column="1" Grid.Row="11" x:Name="DoppTB" FontSize="12" Padding="10,10,0,0" Width="390"></TextBox>
-
         private void Button_Click_Login(object sender, RoutedEventArgs e)
         {
             int b = 0;
