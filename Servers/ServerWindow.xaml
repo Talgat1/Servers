@@ -10,8 +10,9 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="20"></RowDefinition>
             <RowDefinition Height="20"></RowDefinition>
-            <RowDefinition Height="35"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
             <RowDefinition Height="190"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="20"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -19,42 +20,58 @@
             <ColumnDefinition Width="390"></ColumnDefinition>
             <ColumnDefinition Width="20"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Column="1" Grid.Row="1" FontSize="20"  HorizontalAlignment="Left" VerticalAlignment="Center">Доступные сервера</TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="1" FontSize="20"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0">Доступные сервера</TextBlock>
         <Button Grid.Column="1" Grid.Row="1" x:Name="Close" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Close_Click" >
             <Path Fill="#000000" Data="M12.0007 1.20857L10.7921 0L6.00067 4.79143L1.20924 0L0.000671387 1.20857L4.7921 6L0.000671387 10.7914L1.20924 12L6.00067 7.20857L10.7921 12L12.0007 10.7914L7.20924 6L12.0007 1.20857Z"/>
         </Button>
-        <TextBlock Grid.Column="1" Grid.Row="2" Height="20" FontSize="14" LineHeight="20px" Foreground="#909192" HorizontalAlignment="Left"  VerticalAlignment="Bottom">Название</TextBlock>
-        <TextBlock Grid.Column="1" Grid.Row="2" Height="20" FontSize="14" LineHeight="20px" Foreground="#909192" HorizontalAlignment="Right" Margin="0,0,170,0"  VerticalAlignment="Bottom">Адрес сервера</TextBlock>
-        <ListBox Grid.Row="3" Grid.Column="1" x:Name="ServerList">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="25"></RowDefinition>
-                                <RowDefinition Height="25"></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="140"></ColumnDefinition>
-                                <ColumnDefinition Width="110"></ColumnDefinition>
-                                <ColumnDefinition Width="90"></ColumnDefinition>
-                                <ColumnDefinition Width="40"></ColumnDefinition>
-
-                            </Grid.ColumnDefinitions>
-                            <TextBox Grid.Row="0" Grid.Column="0" Name="NameServer" VerticalAlignment="Center" IsReadOnly="True" Height="24" FontSize="12" Text="{Binding Path=Name_server}" />
-                            <TextBox Grid.Row="0" Grid.Column="1" x:Name="AdresServer" VerticalAlignment="Center" IsReadOnly="True" Height="24" FontSize="12" Text="{Binding Path=Adres}"  />
-                            <Button Grid.Row="0" Grid.Column="2" x:Name="EditBut" Height="25" HorizontalAlignment="Right" Width="30" Click="Edit_Button_CLick">
-                                <Path Fill="#000000" Data="M 3 17.25 V 21 h 3.75 L 17.81 9.94 l -3.75 -3.75 L 3 17.25 Z M 20.71 7.04 c 0.39 -0.39 0.39 -1.02 0 -1.41 l -2.34 -2.34 c -0.39 -0.39 -1.02 -0.39 -1.41 0 l -1.83 1.83 l 3.75 3.75 l 1.83 -1.83 Z"/>
-                            </Button>
-                            <Button Grid.Row="0" Grid.Column="3" x:Name="DeleteBut" Height="30" HorizontalAlignment="Right" Width="32">
-                                <Path Fill="#000000" Data="M 25.291 5.313 v 2.688 h -18.624 v -2.688 h 4.625 l 1.375 -1.313 h 6.625 l 1.375 1.313 h 4.625 Z M 7.979 25.312 v -15.999 h 15.999 v 15.999 c 0 1.438 -1.25 2.688 -2.688 2.688 h -10.625 c -1.438 0 -2.688 -1.25 -2.688 -2.688 h 0.001 Z"></Path>
-                            </Button>
-                        </Grid>
-                        
-                        
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <ListView Grid.Column="1" Grid.Row="3" x:Name="ServerList"  Width="390" BorderBrush="White" >
+            <ListView.View>
+                <GridView x:Name="ServerGrideView">
+                    <GridViewColumn Header="Название"  Width="150"   >
+                        <GridViewColumn.HeaderContainerStyle>
+                            <Style TargetType="{x:Type GridViewColumnHeader}">
+                                <Setter Property="HorizontalContentAlignment" Value="Left" />
+                            </Style>
+                        </GridViewColumn.HeaderContainerStyle>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox Name="ServerrNam" Text="{Binding Path=Name_server}" BorderBrush="{x:Null}" IsReadOnly="True" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Адрес сервера" Width="150">
+                        <GridViewColumn.HeaderContainerStyle>
+                            <Style TargetType="{x:Type GridViewColumnHeader}">
+                                <Setter Property="HorizontalContentAlignment"  Value="Left" />
+                            </Style>
+                        </GridViewColumn.HeaderContainerStyle>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox Text="{Binding Path=Adres}" BorderBrush="{x:Null}" IsReadOnly="True" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header=""  Width="40">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button  x:Name="EditBut" Background="White" Height="25" Width="25" HorizontalAlignment="Right" Click="Edit_Button_CLick">
+                                    <Path Fill="#000000" Data="M 3 17.25 V 21 h 3.75 L 17.81 9.94 l -3.75 -3.75 L 3 17.25 Z M 20.71 7.04 c 0.39 -0.39 0.39 -1.02 0 -1.41 l -2.34 -2.34 c -0.39 -0.39 -1.02 -0.39 -1.41 0 l -1.83 1.83 l 3.75 3.75 l 1.83 -1.83 Z"/>
+                                </Button>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header=""  Width="40">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name= "DeleteBut" Background="White" Height="25" Width="28" Click="Delete_Button_CLick">
+                                    <Path  Fill= "#000000" Data= "M 25.291 5.313 v 2.688 h -18.624 v -2.688 h 4.625 l 1.375 -1.313 h 6.625 l 1.375 1.313 h 4.625 Z M 7.979 25.312 v -15.999 h 15.999 v 15.999 c 0 1.438 -1.25 2.688 -2.688 2.688 h -10.625 c -1.438 0 -2.688 -1.25 -2.688 -2.688 h 0.001 Z"/>
+                                </Button>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="EditBut" Grid.Column="1" Grid.Row="4" Width="110" Height="25" Background="White" BorderBrush="{x:Null}" Click="Button_Click_Edit" Content="Добавить сервер" Foreground="#4EA9FF" HorizontalAlignment="Right"  />
     </Grid>
 </Window>

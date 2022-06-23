@@ -19,11 +19,13 @@ namespace Servers
     /// Логика взаимодействия для ServerWindow.xaml
     /// </summary>
     public partial class ServerWindow : Window
-    {      
+    {
+        
         public ServerWindow()
         {
             InitializeComponent();
             ServerList.ItemsSource = MainWindow.db.Seerver.ToList();
+            
         }
 
         private void Close_Click(object sender, RoutedEventArgs e)
@@ -31,10 +33,24 @@ namespace Servers
             Close();
         }
 
-        private void Edit_Button_CLick(object sender, RoutedEventArgs e)
+        private void Delete_Button_CLick(object sender, RoutedEventArgs e)
         {
-            
+            ServerList.SelectedItem = ((Button)sender).DataContext;
+            var s = ServerList.SelectedItem;
+            MainWindow.db.Seerver.Remove((Seerver)s);
+            MessageBox.Show("Сервер удален!");
+            MainWindow.db.SaveChanges();
         }
+        private void Edit_Button_CLick(object sender, RoutedEventArgs e)
+        {            
 
+        }        
+
+        private void Button_Click_Edit(object sender, RoutedEventArgs e)
+        {
+            AddServerWindow asw = new AddServerWindow();
+            this.Close();
+            asw.Show();
+         }        
     }
 }
